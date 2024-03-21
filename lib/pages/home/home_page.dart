@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.black38,width: 1),
+          border: Border.all(color: Colors.black38,width: 2),
         ),
         child: Column(
           children: [
