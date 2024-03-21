@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:myapp/models/post_model.dart';
+import 'package:myapp/models/photos_model.dart';
+// import 'package:myapp/models/post_model.dart';
 import 'package:myapp/services/api_service.dart';
 
 class HomePage extends StatelessWidget {
@@ -23,12 +24,12 @@ class HomePage extends StatelessWidget {
   FutureBuilder _body(){
     final apiService = ApiService(Dio(BaseOptions(contentType: "application/json")));
     return FutureBuilder(
-      future: apiService.getPosts(), 
+      future: apiService.getPhotos(), 
       builder: (
         (context, snapshot){
       if(snapshot.connectionState == ConnectionState.done){
-        final List<PostModel> posts = snapshot.data!;
-        return _post(posts);
+        final List<PhotosModel> photos = snapshot.data!;
+        return _post(photos);
       } else{
         return const Center(
           child: CircularProgressIndicator(),
@@ -38,9 +39,9 @@ class HomePage extends StatelessWidget {
     ));
   }
 
-  Widget _post(List<PostModel> posts) {
+  Widget _post(List<PhotosModel> photos) {
     return ListView.builder(
-      itemCount: posts.length,
+      itemCount: photos.length,
       itemBuilder:(context, index) {
         return Container(
         margin: const EdgeInsets.all(16), 
@@ -52,15 +53,16 @@ class HomePage extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Text(posts[index].title,
+            Text(photos[index].title,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 10,),
-            Text(
-              posts[index].body
-            ),
+            Image.network(photos[index].url, width: 200,),
+            // Text(
+            //   posts[index].body
+            // ),
           ],
         ),
       );

@@ -1,3 +1,4 @@
+import 'package:myapp/models/photos_model.dart';
 import 'package:myapp/models/post_model.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
@@ -11,4 +12,6 @@ abstract class ApiService{
   @GET('posts')
   Future<List<PostModel>> getPosts();
   
+  @GET('photos')
+  Future<List<PhotosModel>> getPhotos();
 }
